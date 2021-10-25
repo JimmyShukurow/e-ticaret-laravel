@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\TestResource;
 use App\Models\Test;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,7 @@ class TestController extends Controller
     public function index()
     {
         $tests = Test::orderBy('created_at', 'DESC')->get();
-        return $tests;
+        return new TestResource($tests);
     }
 
     public function show($id)
